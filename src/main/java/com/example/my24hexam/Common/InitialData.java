@@ -2,7 +2,9 @@ package com.example.my24hexam.Common;
 
 import com.example.my24hexam.Entity.Delivery;
 import com.example.my24hexam.Entity.Product;
+import com.example.my24hexam.Entity.ProductOrder;
 import com.example.my24hexam.Repository.DeliveryRepository;
+import com.example.my24hexam.Repository.ProductOrderRepository;
 import com.example.my24hexam.Repository.ProductRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -13,12 +15,17 @@ import java.time.LocalDate;
 //@Component
 public class InitialData implements CommandLineRunner {
 
-    ProductRepository productRepository;
+    private ProductRepository productRepository;
     private DeliveryRepository deliveryRepository;
 
-    public InitialData(ProductRepository productRepository, DeliveryRepository deliveryRepository) {
+    private ProductOrderRepository productOrderRepository;
+
+
+
+    public InitialData(ProductRepository productRepository, DeliveryRepository deliveryRepository, ProductOrderRepository productOrderRepository) {
         this.productRepository = productRepository;
         this.deliveryRepository = deliveryRepository;
+        this.productOrderRepository = productOrderRepository;
     }
 
     @Override
@@ -41,5 +48,13 @@ public class InitialData implements CommandLineRunner {
 
         deliveryRepository.save(d1);
         deliveryRepository.save(d2);
+
+
+        ProductOrder pO1 = new ProductOrder("4.5kg", p1);
+        ProductOrder pO2 = new ProductOrder("4.5kg", p3);
+        ProductOrder pO3 = new ProductOrder("4.5kg", p2);
+        productOrderRepository.save(pO1);
+        productOrderRepository.save(pO2);
+        productOrderRepository.save(pO3);
     }
 }

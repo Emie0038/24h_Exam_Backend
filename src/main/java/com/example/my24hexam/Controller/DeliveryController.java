@@ -26,7 +26,7 @@ public class DeliveryController {
         this.deliveryService = deliveryService;
         this.productOrderService = productOrderService;
     }
-    //Create new delivery
+    //Create new delivery is working
     @PostMapping("/deliveries")
     public ResponseEntity<Delivery> createDelivery(@RequestBody Delivery delivery){
         Delivery newDelivery = deliveryService.createDelivery(delivery);
@@ -38,6 +38,9 @@ public class DeliveryController {
     {
         return deliveryService.getAllDeliveries();
     }
+
+
+
     //Get list of specific delivery, including assigned productOrders by date)
     @GetMapping("/deliveries/search/{date}")
     public List<Delivery> searchForDate(@PathVariable("date") String date)
